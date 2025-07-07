@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+@layer utilities {
+  .btn {
+    @apply rounded-sm;
+  }
+
+  .text-primary {
+    @apply text-[#BEFD01];
+  }
+}
+.my-button {
+  background: #befd01;
+  color: black;
+}
+
+.active {
+  color: #98cd00;
+}
