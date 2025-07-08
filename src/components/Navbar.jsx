@@ -36,7 +36,7 @@ const Navbar = () => {
   </>
 
   return (
-    <nav className="h-[70px] relative w-full px-6 md:px-14 lg:px-18 xl:px-24 flex items-center justify-between z-20 bg-white text-gray-700 shadow-[0px_4px_25px_0px_#0000000D]">
+    <nav className="h-[70px] fixed  w-full px-6 md:px-14 lg:px-18 xl:px-24 flex items-center justify-between z-20 text-gray-700">
       {/* Logo - Left aligned */}
       <div className="flex-shrink-0">
         <a className='flex items-center gap-1'>

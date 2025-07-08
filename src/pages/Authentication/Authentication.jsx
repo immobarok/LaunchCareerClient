@@ -30,7 +30,7 @@ const Authentication = () => {
     isSignup ? createUser(email, password) : signInUser(email, password);
   }
 
- 
+
 
   return (
     <div className='fixed inset-0 z-50 backdrop-blur-[1px] bg-black/10 flex items-center justify-center px-4'>
