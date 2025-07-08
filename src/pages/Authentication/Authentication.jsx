@@ -8,6 +8,7 @@ import 'swiper/css';
 import { motion } from 'motion/react';
 import SocialLogin from './SocialLogin';
 import { useForm } from "react-hook-form"
+import { useLoaderData, useLocation, useNavigate } from 'react-router';
 
 const Authentication = () => {
   const { showLogin, setShowLogin, user, createUser, signInUser, signOutUser } = useAuth();
@@ -18,6 +19,9 @@ const Authentication = () => {
     formState: { errors },
   } = useForm()
   const [state, setState] = useState('login');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || '/';
 
   const isSignup = state === 'signup';
 
@@ -25,6 +29,8 @@ const Authentication = () => {
     const { email, password } = data;
     isSignup ? createUser(email, password) : signInUser(email, password);
   }
+
+ 
 
   return (
     <div className='fixed inset-0 z-50 backdrop-blur-[1px] bg-black/10 flex items-center justify-center px-4'>
@@ -76,7 +82,7 @@ const Authentication = () => {
           </div>
 
           {/* Social Logins */}
-          <SocialLogin />
+          <SocialLogin from={from} />
 
           {/* Divider */}
           <div className="divider mt-4">OR</div>

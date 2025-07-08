@@ -37,6 +37,32 @@ const Home = () => {
     }
   }
 
+  const logos = [
+    { src: assets.asus, alt: 'Asus' },
+    { src: assets.acer, alt: 'Acer' },
+    { src: assets.kia, alt: 'Kia' },
+    { src: assets.sony, alt: 'Sony' },
+  ];
+
+  const containerVariant = {
+    hidden: { opacity: 0, y: 50 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="bg-gradient-to-l from-lime-50 to-lime-200/60">
       <div className='max-w-6xl mx-auto px-4 py-8 sm:py-12'>
@@ -73,7 +99,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Find a Job
+                Get Started
               </motion.button>
 
               <motion.button
@@ -81,9 +107,30 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Post a Job
+                Learn More
               </motion.button>
             </motion.div>
+            <div>
+              <h1 className="text-base font-medium text-gray-500 mt-3">Truested By</h1>
+              <motion.div
+                className="flex flex-wrap justify-start gap-3 items-start md:-mt-5 mt-0"
+                variants={containerVariant}
+                initial="hidden"
+                animate="show"
+              >
+                {logos.map((logo, index) => (
+                  <motion.img
+                    key={index}
+                    src={logo.src}
+                    alt={logo.alt}
+                    variants={itemVariant}
+                    className=" w-16 h-16 sm:w-20 sm:h-20md:w-28 md:h-28 object-contain grayscale hover:grayscale-0 transition duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  />
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
 
           <motion.figure
