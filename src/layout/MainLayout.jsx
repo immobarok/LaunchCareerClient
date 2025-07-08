@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Authentication from "../pages/Authentication";
 import useAuth from "../hooks/UseAuth";
+import Authentication from "../pages/Authentication/Authentication";
 
 const MainLayout = () => {
   const { showLogin } = useAuth();
@@ -11,7 +11,7 @@ const MainLayout = () => {
       {/* Navbar always on top */}
       <Navbar />
       {
-        showLogin && <Authentication />
+        showLogin && < Authentication/>
       }
       {/* Main content area should grow to fill space */}
       <div className="flex-grow">
