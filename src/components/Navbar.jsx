@@ -19,8 +19,8 @@ const Navbar = () => {
       </NavLink>
     </li>
     <li>
-      <NavLink to={'/servcies'} className="hover:text-lime-500 transition" >
-        Services
+      <NavLink to={'/myApplications'} className="hover:text-lime-500 transition" >
+        MyApplications
       </NavLink>
     </li>
     <li>

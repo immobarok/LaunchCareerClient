@@ -11,26 +11,34 @@ import { useForm } from "react-hook-form"
 import { useLoaderData, useLocation, useNavigate } from 'react-router';
 
 const Authentication = () => {
-  const { showLogin, setShowLogin, user, createUser, signInUser, signOutUser } = useAuth();
+  const { setShowLogin, user, createUser, signInUser, signOutUser,redirectPath } = useAuth();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    reset
   } = useForm()
   const [state, setState] = useState('login');
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state || '/';
 
   const isSignup = state === 'signup';
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { email, password } = data;
-    isSignup ? createUser(email, password) : signInUser(email, password);
-  }
-
-
+    try {
+      if (isSignup) {
+        await createUser(email, password);
+      } else {
+        await signInUser(email, password);
+      }
+      reset();
+      setShowLogin(false)
+      navigate(redirectPath || '/');
+    } catch (err) {
+      console.error("Auth error:", err);
+    }
+  };
 
   return (
     <div className='fixed inset-0 z-50 backdrop-blur-[1px] bg-black/10 flex items-center justify-center px-4'>
@@ -82,7 +90,7 @@ const Authentication = () => {
           </div>
 
           {/* Social Logins */}
-          <SocialLogin from={from} />
+          <SocialLogin />
 
           {/* Divider */}
           <div className="divider mt-4">OR</div>

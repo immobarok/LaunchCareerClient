@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
-import MyApplication from "../pages/MyApplication/MyApplication";
+import JobDetails from "../pages/JobDetails/JobDetails";
+import MyApplications from "../pages/MyApplications/MyApplications";
+import PrivateRoutes from "../routes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -13,8 +15,16 @@ export const router = createBrowserRouter([
         Component: Home
       },
       {
-        path: 'myApplication',
-        Component: MyApplication
+        path: 'myApplications',
+        element: <PrivateRoutes><MyApplications></MyApplications></PrivateRoutes>
+      },
+      {
+        path: 'jobs/:id',
+        Component: JobDetails,
+        loader:({params})=>fetch(`http://localhost:4000/jobs/${params.id}`)
+      },
+      {
+        path:'jobApply/:id'
       }
     ]
   }

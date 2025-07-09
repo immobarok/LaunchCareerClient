@@ -4,13 +4,11 @@ import JobCategory from "./JobCategory"
 
 const Home = () => {
   // Animation variants
-
-
   return (
     <div>
       <Hero />
-      <HotJobs />
       <JobCategory />
+      <HotJobs />
     </div>
   )
 }

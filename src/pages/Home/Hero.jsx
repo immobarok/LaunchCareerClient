@@ -71,7 +71,7 @@ const Hero = () => {
         backgroundPosition: 'center',
       }}
     >
-      <div className='max-w-6xl mx-auto px-4 py-20 sm:py-28'>
+      <div className='max-w-6xl mx-auto px-8 sm:px-20 md:px-16 lg:px-4 py-20 sm:py-28'>
         <motion.div
           className="flex flex-col lg:flex-row justify-between items-center gap-8"
           initial="hidden"
@@ -101,7 +101,7 @@ const Hero = () => {
               variants={itemVariants}
             >
               <motion.button
-                className="bg-lime-500 border border-lime-400 hover:bg-lime-600 text-white px-6 sm:px-8 rounded-full py-2 sm:py-3 transition-colors duration-300 text-sm sm:text-base"
+                className="my-button border border-lime-300 hover:bg-lime-600 text-white px-6 sm:px-8 rounded-full py-2 sm:py-3 transition-colors duration-300 text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -109,7 +109,7 @@ const Hero = () => {
               </motion.button>
 
               <motion.button
-                className="border border-lime-500 text-lime-600 hover:bg-lime-50 px-6 sm:px-8 py-2 sm:py-3 rounded-full cursor-pointer transition-colors duration-300 text-sm sm:text-base"
+                className="border border-lime-400 text-lime-600 hover:bg-lime-50 px-6 sm:px-8 py-2 sm:py-3 rounded-full cursor-pointer transition-colors duration-300 text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

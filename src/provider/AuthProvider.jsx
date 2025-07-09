@@ -7,6 +7,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [redirectPath, setRedirectPath] = useState('/');
   const [user, setUser] = useState(null)
 
   const createUser = async (email, password) => {
@@ -54,7 +55,10 @@ const AuthProvider = ({ children }) => {
     signInUser,
     signInWithGoogle,
     signOutUser,
-    user
+    loading,
+    user,
+    redirectPath,
+    setRedirectPath
   }
   return (
     <AuthContext value={authInfo}>
