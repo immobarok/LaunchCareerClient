@@ -19,9 +19,9 @@ const JobCategory = () => {
   };
 
   return (
-    <div className="py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+    <div className="pt-8 pb-16 px-4 sm:px-6 max-w-6xl mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Jobs Of the Day</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">Jobs Of the Day</h1>
         <p className="mt-2 text-gray-600">Find the job that's perfect for you</p>
       </div>
       <motion.div

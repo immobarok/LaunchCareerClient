@@ -10,14 +10,14 @@ const PrivateRoute = ({ children }) => {
   useEffect(() => {
     if (!loading && !user) {
       setRedirectPath(location.pathname); 
-      setShowLogin(true);                                     
+      setShowLogin(true);
     }
   }, [user, loading, location, navigate, setRedirectPath, setShowLogin]);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-ring loading-xl"></span>
+        <span className="loading loading-ring loading-2xl text-lime-500"></span>
       </div>
     );
   }

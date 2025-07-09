@@ -22,6 +22,8 @@ import page from './icons8-page-96.png'
 import search from './search.png'
 import electricIcon from './electric.png'
 import location from './location.png'
+import upload from './upload.png'
+import avatar from './user.png'
 
 export const assets = {
   logo,
@@ -47,7 +49,9 @@ export const assets = {
   card,
   callCenter,
   electricIcon,
-  location
+  location,
+  upload,
+  avatar
 }
 
 export const category = [

@@ -129,7 +129,7 @@ const Authentication = () => {
               )}
             </p>
 
-            <button type='submit' className='btn btn-primary my-3' >
+            <button type='submit' className='btn my-button my-3' >
               {isSignup ? 'Signup' : 'Login'}
             </button>
             {/* Switch Link */}
