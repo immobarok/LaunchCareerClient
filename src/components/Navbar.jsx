@@ -34,8 +34,8 @@ const Navbar = () => {
       </NavLink>
     </li>
     <li>
-      <NavLink to={'/port'} className="hover:text-lime-500 transition" >
-        Portfolio
+      <NavLink to={'/addJob'} className="hover:text-lime-500 transition" >
+        Add Job
       </NavLink>
     </li>
     <li>
