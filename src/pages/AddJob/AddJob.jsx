@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const AddJob = () => {
   const {
@@ -9,8 +11,21 @@ const AddJob = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Submitted Job:', data);
-    
+    const { min, max, currency, ...rest } = data;
+    const newJob = {
+      ...rest,
+      salaryRange: { min, max, currency }
+    }
+    newJob.requirements = data.requirements.split(',').map((item) => item.trim())
+    newJob.responsibilities = data.responsibilities.split(',').map(item => item.trim());
+    axios.post('http://localhost:4000/addJob', newJob)
+      .then(res => {
+        if (res.data.insertedId) {
+          toast.success("Job added successfully")
+        }
+      }).catch((error) => {
+        toast.error(error.message)
+      })
   };
 
   const containerVariants = {
@@ -132,13 +147,13 @@ const AddJob = () => {
 
         <motion.div variants={itemVariants}>
           <label className="label">Requirements <span className='text-lime-500'>*</span></label>
-          <textarea {...register('requirements', { required: true })} rows={3} className="border border-gray-300 px-4 py-1.5 text-gray-500 outline-none ring-lime-500 rounded w-full" placeholder="List the job requirements..."></textarea>
+          <textarea {...register('requirements', { required: true })} rows={3} className="border border-gray-300 px-4 py-1.5 text-gray-500 outline-none ring-lime-500 rounded w-full" placeholder="List the job requirements...(separate by comma)"></textarea>
           {errors.requirements && <span className='text-xs text-red-600'>Requirements are required *</span>}
         </motion.div>
 
         <motion.div variants={itemVariants}>
           <label className="label">Responsibilities <span className='text-lime-500'>*</span></label>
-          <textarea {...register('responsibilities', { required: true })} rows={3} className="border border-gray-300 px-4 py-1.5 text-gray-500 outline-none ring-lime-500 rounded w-full" placeholder="List responsibilities here..."></textarea>
+          <textarea {...register('responsibilities', { required: true })} rows={3} className="border border-gray-300 px-4 py-1.5 text-gray-500 outline-none ring-lime-500 rounded w-full" placeholder="List responsibilities here...(separate by comma)"></textarea>
           {errors.responsibilities && <span className='text-xs text-red-600'>Responsibilities are required *</span>}
         </motion.div>
 
