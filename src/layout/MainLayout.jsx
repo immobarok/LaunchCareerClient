@@ -11,7 +11,7 @@ const MainLayout = () => {
     <div className="min-h-screen flex flex-col">
       {/* Navbar always on top */}
       <Navbar />
-      <Toaster />
+      <Toaster position="top-right" />
       {
         showLogin && < Authentication />
       }

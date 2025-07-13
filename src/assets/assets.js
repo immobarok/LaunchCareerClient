@@ -24,6 +24,7 @@ import electricIcon from './electric.png'
 import location from './location.png'
 import upload from './upload.png'
 import avatar from './user.png'
+import promotion from './promotion.svg'
 
 export const assets = {
   logo,
@@ -51,7 +52,8 @@ export const assets = {
   electricIcon,
   location,
   upload,
-  avatar
+  avatar,
+  promotion
 }
 
 export const category = [

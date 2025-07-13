@@ -39,8 +39,8 @@ const Navbar = () => {
       </NavLink>
     </li>
     <li>
-      <NavLink to={'/pau'} className="hover:text-lime-500 transition" >
-        Pricing
+      <NavLink to={'/myPostedJob'} className="hover:text-lime-500 transition" >
+        My Posted Job
       </NavLink>
     </li>
   </>
@@ -52,7 +52,7 @@ const Navbar = () => {
     >
       <div className="flex-shrink-0">
         <a className='flex items-center gap-1'>
-          <img className='h-10 w-10 sm:w-14 sm:h-14 saturate-200 contrast-150 brightness-95'
+          <img className='h-10 w-10 sm:w-14 sm:h-14 saturate-200 contrast-110 brightness-98'
             src={assets.logo}
           />
           <h1 className='text-2xl sm:text-4xl font-bold'>JobPilot <span className='text-primary'>.</span></h1>

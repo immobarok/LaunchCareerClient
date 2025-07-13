@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 const SocialLogin = () => {
   const navigate = useNavigate();
-  const { user, signInWithGoogle, redirectPath,setShowLogin } = useAuth();
+  const { user, signInWithGoogle, redirectPath, setShowLogin } = useAuth();
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(result => {

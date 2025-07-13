@@ -2,8 +2,10 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import useAuth from '../../hooks/UseAuth';
 
 const AddJob = () => {
+  const { user } = useAuth()
   const {
     register,
     handleSubmit,
@@ -18,7 +20,7 @@ const AddJob = () => {
     }
     newJob.requirements = data.requirements.split(',').map((item) => item.trim())
     newJob.responsibilities = data.responsibilities.split(',').map(item => item.trim());
-    axios.post('http://localhost:4000/addJob', newJob)
+    axios.post("http://localhost:4000/add-job", newJob)
       .then(res => {
         if (res.data.insertedId) {
           toast.success("Job added successfully")
@@ -167,7 +169,7 @@ const AddJob = () => {
 
           <motion.div variants={itemVariants}>
             <label className="label">Contact Email <span className='text-lime-500'>*</span></label>
-            <input {...register('hr_email', { required: true })} type="email" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="hr@example.com" />
+            <input {...register('hr_email', { required: true })} type="email" defaultValue={user?.email} readOnly className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="hr@example.com" />
             {errors.hr_email && <span className='text-xs text-red-600'>Contact email is required *</span>}
           </motion.div>
         </div>
