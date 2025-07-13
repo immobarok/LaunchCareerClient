@@ -1,4 +1,5 @@
 import Hero from "./Hero"
+import HiringBanner from "./HiringBanner/HiringBanner"
 import HotJobs from "./HotJobs"
 import JobByLocation from "./JobByLocation/JobByLocation"
 import JobCategory from "./JobCategory"
@@ -11,6 +12,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <HiringBanner />
       <JobCategory />
       <HotJobs />
       <Promotions />

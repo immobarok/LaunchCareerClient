@@ -1,4 +1,7 @@
+import { motion, useInView } from 'framer-motion';
 import CountUp from 'react-countup';
+import { useRef } from 'react';
+
 const PromotionCounter = () => {
   const clientCounter = [
     {
@@ -27,30 +30,96 @@ const PromotionCounter = () => {
     }
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
   return (
-    <div className='max-w-6xl mx-auto my-10 sm:my-20'>
-      <div className='grid grid-cols-4 gap-4 items-center text-center'>
-        {
-          clientCounter.map((counter, idx) => {
-            return (
-              <div key={idx} className="space-y-2">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-lime-500">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={container}
+      className='max-w-6xl mx-auto my-10 sm:my-20'
+    >
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-center text-center px-4'>
+        {clientCounter.map((counter, idx) => {
+          const ref = useRef(null);
+          const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+          return (
+            <motion.div
+              key={idx}
+              variants={item}
+              whileHover={{
+                y: -5,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+              ref={ref}
+              className="space-y-4 p-6 transition-shadow"
+            >
+              <motion.h1
+                className="text-4xl sm:text-5xl font-bold text-lime-500"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", delay: 0.2 * idx }}
+              >
+                {isInView && (
                   <CountUp
                     start={0}
                     end={counter.count}
-                    duration={5}
+                    duration={2.5}
                     separator=","
-                  />{counter.suffix}
-                </h1>
-                <h2 className="text-2xl sm:text-3xl font-medium text-gray-800">{counter.title}</h2>
-                <p className="text-gray-500">{counter.description}</p>
-              </div>
-            )
-          })
-        }
+                  />
+                )}
+                {counter.suffix}
+              </motion.h1>
+
+              <motion.h2
+                className="text-xl sm:text-2xl font-medium text-gray-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 + (0.1 * idx) }}
+              >
+                {counter.title}
+              </motion.h2>
+
+              <motion.p
+                className="text-gray-500 text-sm sm:text-base"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 + (0.1 * idx) }}
+              >
+                {counter.description}
+              </motion.p>
+            </motion.div>
+          );
+        })}
+
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-export default PromotionCounter
+export default PromotionCounter;

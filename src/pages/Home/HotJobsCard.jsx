@@ -1,8 +1,10 @@
-import React from 'react';
 import { assets } from '../../assets/assets';
 import { BriefcaseBusiness, CalendarDays, MapPin, Layers3 } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HotJobsCard = ({ job }) => {
   const {
@@ -19,8 +21,15 @@ const HotJobsCard = ({ job }) => {
     requirements
   } = job;
 
+  useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        once:false,
+      });
+    }, []);
+
   return (
-    <div className="card bg-white rounded-xl shadow-sm border border-lime-100 p-4 relative transition-all duration-200 hover:shadow-md hover:border-lime-200">
+    <div data-aos="fade-up" className="card bg-white rounded-xl shadow-sm border border-lime-100 p-4 relative transition-all duration-200 hover:shadow-md hover:border-lime-200">
       {/* Top right icon */}
       <img
         src={assets.electricIcon}

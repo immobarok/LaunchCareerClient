@@ -41,9 +41,13 @@ import amazon from './amazon.png'
 import ibm from './ibm.png'
 import shopify from './shopify.png'
 import netflix from './netflix.png'
+import jobApply from './jobs.png'
+import apply from './apply.png'
 
 
 export const assets = {
+  jobApply,
+  apply,
   logo,
   login_image1,
   login_image2,
