@@ -24,7 +24,24 @@ import electricIcon from './electric.png'
 import location from './location.png'
 import upload from './upload.png'
 import avatar from './user.png'
-import promotion from './promotion.svg'
+import promotion from './promotion.png'
+import google from './google.png'
+import facebook from './facebook.png'
+import x from './X.png'
+import linkedin from './linkedin.png'
+import adobe from './adobe.png'
+import tiktok from './tiktok.png'
+import intel from './intel.png'
+import microsoft1 from './microsoft1.png'
+import meta from './meta.png'
+import snapchat from './snapchat.png'
+import apple from './apple.png'
+import tesla from './tesla.png'
+import amazon from './amazon.png'
+import ibm from './ibm.png'
+import shopify from './shopify.png'
+import netflix from './netflix.png'
+
 
 export const assets = {
   logo,
@@ -98,3 +115,118 @@ export const category = [
     alt: 'customer-help',
   },
 ];
+
+export const marqueeContent = [
+  {
+    "logo": linkedin,
+    "companyName": "Linkedin",
+    "location": "Mountain View, California, USA",
+    "rating": 4.9,
+    "jobOpenings": 12
+  },
+  {
+    "logo": apple,
+    "companyName": "Apple Inc.",
+    "location": "Cupertino, California, USA",
+    "rating": 4.8,
+    "jobOpenings": 9
+  },
+  {
+    "logo": microsoft1,
+    "companyName": "Microsoft",
+    "location": "Redmond, Washington, USA",
+    "rating": 4.7,
+    "jobOpenings": 15
+  },
+  {
+    "logo": amazon,
+    "companyName": "Amazon",
+    "location": "Seattle, Washington, USA",
+    "rating": 4.6,
+    "jobOpenings": 20
+  },
+  {
+    "logo": facebook,
+    "companyName": "Meta (Facebook)",
+    "location": "Menlo Park, California, USA",
+    "rating": 4.5,
+    "jobOpenings": 8
+  },
+  {
+    "logo": netflix,
+    "companyName": "Netflix",
+    "location": "Los Gatos, California, USA",
+    "rating": 4.4,
+    "jobOpenings": 5
+  },
+  {
+    "logo": tesla,
+    "companyName": "Tesla",
+    "location": "Palo Alto, California, USA",
+    "rating": 4.6,
+    "jobOpenings": 10
+  },
+  {
+    "logo": adobe,
+    "companyName": "Adobe",
+    "location": "San Jose, California, USA",
+    "rating": 4.3,
+    "jobOpenings": 7
+  },
+  {
+    "logo": ibm,
+    "companyName": "IBM",
+    "location": "Armonk, New York, USA",
+    "rating": 4.2,
+    "jobOpenings": 14
+  },
+  {
+    "logo": intel,
+    "companyName": "Intel",
+    "location": "Santa Clara, California, USA",
+    "rating": 4.1,
+    "jobOpenings": 11
+  },
+  {
+    "logo": tiktok,
+    "companyName": "Tiktok",
+    "location": "San Francisco, California, USA",
+    "rating": 4.4,
+    "jobOpenings": 6
+  },
+  {
+    "logo": snapchat,
+    "companyName": "snapchat",
+    "location": "Austin, Texas, USA",
+    "rating": 4.0,
+    "jobOpenings": 13
+  },
+  {
+    "logo": meta,
+    "companyName": "Meta",
+    "location": "San Francisco, California, USA",
+    "rating": 4.3,
+    "jobOpenings": 4
+  },
+  {
+    "logo": x,
+    "companyName": "X",
+    "location": "San Francisco, California, USA",
+    "rating": 4.1,
+    "jobOpenings": 7
+  },
+  {
+    "logo": google,
+    "companyName": "Google",
+    "location": "Stockholm, Sweden",
+    "rating": 4.2,
+    "jobOpenings": 5
+  },
+  {
+    "logo": shopify,
+    "companyName": "Shopify",
+    "location": "Ottawa, Ontario, Canada",
+    "rating": 4.4,
+    "jobOpenings": 6
+  }
+]
