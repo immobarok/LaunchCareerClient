@@ -24,12 +24,21 @@ const HotJobsCard = ({ job }) => {
   useEffect(() => {
       AOS.init({
         duration: 1000,
-        once:false,
+        once:true,
       });
     }, []);
 
   return (
-    <div data-aos="fade-up" className="card bg-white rounded-xl shadow-sm border border-lime-100 p-4 relative transition-all duration-200 hover:shadow-md hover:border-lime-200">
+    <div
+      data-aos="fade-up"
+      className="relative p-6 rounded-2xl shadow-sm bg-gradient-to-br from-lime-100 via-white to-[#f7f7f7] border border-lime-200 overflow-hidden transition-all duration-500 hover:scale-[1.015] hover:shadow-md"
+      style={{
+        backgroundSize: '300% 300%',
+        animation: 'gradientPulse 10s ease infinite',
+      }}
+    >
+      {/* Decorative blur effect */}
+      <div className="absolute -top-10 -right-10 w-32 h-32 bg-lime-200 rounded-full blur-3xl opacity-30 pointer-events-none z-0"></div>
       {/* Top right icon */}
       <img
         src={assets.electricIcon}

@@ -43,9 +43,11 @@ import shopify from './shopify.png'
 import netflix from './netflix.png'
 import jobApply from './jobs.png'
 import apply from './apply.png'
+import swapLeft from './swap-left.png'
 
 
 export const assets = {
+  swapLeft,
   jobApply,
   apply,
   logo,

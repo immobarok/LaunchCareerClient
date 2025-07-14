@@ -3,32 +3,84 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAuth from '../../hooks/UseAuth';
+import { useState } from 'react';
 
 const AddJob = () => {
   const { user } = useAuth()
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const { min, max, currency, ...rest } = data;
-    const newJob = {
-      ...rest,
-      salaryRange: { min, max, currency }
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
-    newJob.requirements = data.requirements.split(',').map((item) => item.trim())
-    newJob.responsibilities = data.responsibilities.split(',').map(item => item.trim());
-    axios.post("http://localhost:4000/add-job", newJob)
-      .then(res => {
-        if (res.data.insertedId) {
-          toast.success("Job added successfully")
+  }
+  const onSubmit = async (data) => {
+    setUploading(true);
+    try {
+      const { min, max, currency } = data;
+      const formData = new FormData();
+
+      // Basic fields
+      Object.keys(data).forEach(key => {
+        if (data[key] !== undefined && data[key] !== '') {
+          formData.append(key, data[key]);
         }
-      }).catch((error) => {
-        toast.error(error.message)
-      })
+      });
+
+      // Salary range (nested object)
+      const salaryRange = {
+        min: Number(data.min),
+        max: Number(data.max),
+        currency: data.currency
+      };
+
+      formData.append('salaryRange', JSON.stringify(salaryRange));
+      // Requirements & responsibilities (array)
+
+      const requirementsArray = data.requirements.split(',').map(item => item.trim());
+      const responsibilitiesArray = data.responsibilities.split(',').map(item => item.trim());
+
+      formData.set('requirements', JSON.stringify(requirementsArray));
+      formData.set('responsibilities', JSON.stringify(responsibilitiesArray));
+      formData.append('status', 'active');
+      if (selectedFile) {
+        formData.append('company_logo', selectedFile);
+      }
+
+      // Send
+      const response = await axios.post("http://localhost:4000/add-job", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.data.insertedId) {
+        toast.success("Job added successfully!");
+        setSelectedFile(null);
+        setPreviewUrl(null);
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error(error.response?.data?.message || "Failed to add job");
+    } finally {
+      setUploading(false);
+    }
   };
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -88,8 +140,22 @@ const AddJob = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="label">Company Logo URL</label>
-            <input {...register('company_logo')} type="text" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="https://yourlogo.com/logo.png" />
+            <label className="label">Company Logo</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full"
+            />
+            {previewUrl && (
+              <div className="mt-2">
+                <img
+                  src={previewUrl}
+                  alt="Logo preview"
+                  className="w-20 h-20 object-cover rounded border"
+                />
+              </div>
+            )}
           </motion.div>
 
           <motion.div variants={itemVariants}>
@@ -117,7 +183,7 @@ const AddJob = () => {
 
           <motion.div variants={itemVariants}>
             <label className="label">Application Deadline</label>
-            <input {...register('deadline')} type="date" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" />
+            <input {...register('applicationDeadline')} type="date" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" />
           </motion.div>
 
           <motion.div variants={itemVariants}>
@@ -131,12 +197,12 @@ const AddJob = () => {
 
           <motion.div variants={itemVariants}>
             <label className="label">Minimum Salary</label>
-            <input {...register('min')} type="text" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="e.g. 50,000" />
+            <input {...register('min')} type="number" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="e.g. 50,000" />
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <label className="label">Maximum Salary</label>
-            <input {...register('max')} type="text" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="e.g. 80,000" />
+            <input {...register('max')} type="number" className="border border-gray-300 text-gray-500 px-4 py-1.5 rounded outline-none focus:ring-1 ring-lime-500 w-full" placeholder="e.g. 80,000" />
           </motion.div>
         </div>
 
@@ -180,9 +246,10 @@ const AddJob = () => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="btn my-button w-full bg-[#BEFD01] hover:bg-[#a8e000] text-gray-900 font-bold px-8 py-2.5 rounded-lg shadow transition"
+            disabled={uploading}
+            className="btn my-button w-full bg-[#BEFD01] hover:bg-[#a8e000] text-gray-900 font-bold px-8 py-2.5 rounded-lg shadow transition disabled:opacity-50"
           >
-            Post Job
+            {uploading ? 'Uploading...' : 'Post Job'}
           </motion.button>
         </motion.div>
       </motion.form>

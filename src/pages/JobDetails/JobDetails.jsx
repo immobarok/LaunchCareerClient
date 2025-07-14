@@ -175,7 +175,7 @@ const JobDetails = () => {
         <div className="space-y-6">
           {/* Apply Card */}
           <motion.div
-            className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 sticky top-6"
+            className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 sticky top-52"
             variants={fadeIn}
             initial="hidden"
             animate="visible"

@@ -1,7 +1,7 @@
 import Hero from "./Hero"
 import HiringBanner from "./HiringBanner/HiringBanner"
 import HotJobs from "./HotJobs"
-import JobByLocation from "./JobByLocation/JobByLocation"
+import HowItWorks from "./HowItWorks/HowItWorks"
 import JobCategory from "./JobCategory"
 import PromotionCounter from "./PromotionCounter/PromotionCounter"
 import Promotions from "./TopCandidate/Promotions"
@@ -18,7 +18,7 @@ const Home = () => {
       <Promotions />
       <PromotionCounter />
       <TopRecruiter />
-      <JobByLocation />
+      <HowItWorks />
     </div>
   )
 }
