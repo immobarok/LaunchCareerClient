@@ -8,8 +8,8 @@ const TopRecruiter = () => {
   const rightScrollData = marqueeContent.slice(8, 16);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      <section className="text-center mb-8">
+    <div className="max-w-full mx-auto py-10">
+      <section className="text-center mb-8 space-y-2">
         <h1 className="text-gray-800 font-bold text-3xl sm:text-4xl">
           Top Recruiters
         </h1>

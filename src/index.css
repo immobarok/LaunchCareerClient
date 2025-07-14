@@ -17,8 +17,13 @@
   color: black;
 }
 
+
 .active {
   color: #98cd00;
+}
+
+body {
+  background: linear-gradient(to bottom, #ffffff, #f5fdd8);
 }
 
 *{
