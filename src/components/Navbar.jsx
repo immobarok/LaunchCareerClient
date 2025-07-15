@@ -1,18 +1,36 @@
 import { NavLink } from 'react-router'
 import { assets } from '../assets/assets'
 import useAuth from '../hooks/UseAuth'
-import { useEffect, useState } from 'react';
-import { LogOutIcon, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ChevronDown, LogOutIcon, X } from 'lucide-react';
 
 const Navbar = () => {
   const { user, signOutUser, showLogin, setShowLogin } = useAuth();
   const [show, setShow] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [toggle, setToggle] = useState(false)
+  /* const dropdownRef = useRef(null); */
 
   const handleToogler = () => {
     setShow(!show)
   }
+  /* useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropDown(false);
+        setToggle(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropDown]); */
+
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +44,11 @@ const Navbar = () => {
     <li>
       <NavLink to={'/'} className="hover:text-lime-500 transition" >
         Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink to={'/jobs'} className="hover:text-lime-500 transition" >
+        Jobs
       </NavLink>
     </li>
     <li>
@@ -43,6 +66,57 @@ const Navbar = () => {
         My Posted Job
       </NavLink>
     </li>
+    <li className='relative group' onMouseEnter={() => {
+      setShowDropDown(!showDropDown);
+      setToggle(!toggle);
+    }}
+
+    >
+      <li className='flex items-center gap-2 cursor-pointer'>Blogs <ChevronDown className={`text-gray-500 duration-300 transition-all ${toggle ? 'rotate-180 ' : 'rotate-0'}`} /> </li>
+    </li>
+    {showDropDown && (
+      <div className="absolute top-full left-132 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+        <div className="py-2">
+          <NavLink
+            to={'/blogs'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            All Blogs
+          </NavLink>
+          <NavLink
+            to={'/blogs/tech'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            Technology
+          </NavLink>
+          <NavLink
+            to={'/blogs/career'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            Career Tips
+          </NavLink>
+          <NavLink
+            to={'/blogs/industry'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            Industry News
+          </NavLink>
+          <NavLink
+            to={'/blogs/interview'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            Interview Tips
+          </NavLink>
+          <div className="border-t border-gray-200 my-2"></div>
+          <NavLink
+            to={'/blogs/write'}
+            className="block px-4 py-2 text-gray-700 hover:bg-lime-50 hover:text-lime-500 transition"
+          >
+            Write Article
+          </NavLink>
+        </div>
+      </div>
+    )}
   </>
 
   return (

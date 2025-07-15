@@ -8,6 +8,7 @@ import JobApply from "../pages/JobApply/JobApply";
 import AddJob from "../pages/AddJob/AddJob";
 import MyPostedJob from "../pages/MyPostedJob/MyPostedJob";
 import ViewApplication from "../pages/ViewApplication/ViewApplication";
+import Jobs from "../pages/Jobs/Jobs";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home
+      },
+      {
+        path: '/jobs',
+        Component: Jobs
       },
       {
         path: 'myApplications',
@@ -44,6 +49,9 @@ export const router = createBrowserRouter([
         Component: JobDetails,
         loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
       },
+      {
+        path: 'blog',
+      }
     ]
   }
 ])

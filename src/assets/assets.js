@@ -44,9 +44,16 @@ import netflix from './netflix.png'
 import jobApply from './jobs.png'
 import apply from './apply.png'
 import swapLeft from './swap-left.png'
+import mobileMoc from './mobile_mock.png'
+import bg_moc from './bg-grad.png'
+import appleWhite from './icons8-apple-100.png'
+import playStore from './playstore.png'
 
 
 export const assets = {
+  playStore,
+  bg_moc,
+  mobileMoc,
   swapLeft,
   jobApply,
   apply,
@@ -76,7 +83,8 @@ export const assets = {
   location,
   upload,
   avatar,
-  promotion
+  promotion,
+  appleWhite
 }
 
 export const category = [

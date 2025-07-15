@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAuth from '../../../hooks/UseAuth';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HowItWorks = () => {
   const { setShowLogin } = useAuth();
+  useEffect(() => {
+        AOS.init({
+          duration: 1000,
+          once:true,
+        });
+      }, []);
   const steps = [
     {
       number: '1',
@@ -22,14 +30,14 @@ const HowItWorks = () => {
   ]
 
   return (
-    <div className="bg-white py-16 px-4 sm:px-12 lg:px-20 max-w-full mx-auto">
-      <div className="text-center mb-12 space-y-2">
+    <div className="bg-white py-12 px-4 sm:px-12 lg:px-20 max-w-full mx-auto">
+      <div data-aos='fade-left' className="text-center mb-12 space-y-2">
         <h2 className="text-3xl font-bold text-gray-800">How It Works</h2>
         <p className='text-gray-500'>Just via some simple steps, you will find your ideal candidates you’r looking for!</p>
       </div>
 
       {/* Steps Section */}
-      <div className="relative flex flex-col sm:flex-row justify-between items-center gap-12 sm:gap-6">
+      <div data-aos="zoom-in" className="relative flex flex-col sm:flex-row justify-between items-center gap-12 sm:gap-6">
         <div className="hidden md:block absolute top-8 left-0 w-full h-14 pointer-events-none z-0">
           <svg viewBox="0 0 600 100" className="max-w-4xl mx-auto h-auto -mt-17">
             <path
@@ -64,7 +72,7 @@ const HowItWorks = () => {
           </div>
         ))}
       </div>
-      <div className='flex items-center justify-center my-10'>
+      <div data-aos='fade-up' className='flex items-center justify-center my-10'>
         <button onClick={()=>setShowLogin(true)} className='btn btn-lg my-button'>Get Started</button>
       </div>
     </div>
