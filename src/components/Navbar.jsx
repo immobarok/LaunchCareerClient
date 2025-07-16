@@ -66,14 +66,14 @@ const Navbar = () => {
         My Posted Job
       </NavLink>
     </li>
-    <li className='relative group' onMouseEnter={() => {
+    <div className='relative group' onMouseEnter={() => {
       setShowDropDown(!showDropDown);
       setToggle(!toggle);
     }}
 
     >
       <li className='flex items-center gap-2 cursor-pointer'>Blogs <ChevronDown className={`text-gray-500 duration-300 transition-all ${toggle ? 'rotate-180 ' : 'rotate-0'}`} /> </li>
-    </li>
+    </div>
     {showDropDown && (
       <div className="absolute top-full left-132 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
         <div className="py-2">

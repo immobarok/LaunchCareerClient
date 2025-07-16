@@ -4,12 +4,15 @@ import './index.css'
 import { RouterProvider } from 'react-router'
 import { router } from './router/Router';
 import AuthProvider from './provider/AuthProvider';
+import JobFilterProvider from './provider/JobFilterProvider/JobFilterProvider';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}>
-      </RouterProvider>
-    </AuthProvider>
+    <JobFilterProvider>
+      <AuthProvider>
+        <RouterProvider router={router}>
+        </RouterProvider>
+      </AuthProvider>
+    </JobFilterProvider>
   </StrictMode>,
 )

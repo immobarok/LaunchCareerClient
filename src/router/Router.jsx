@@ -50,6 +50,11 @@ export const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
       },
       {
+        path: 'jobs/jobs/:id',
+        Component: JobDetails,
+        loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
+      },
+      {
         path: 'blog',
       }
     ]

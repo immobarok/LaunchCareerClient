@@ -22,7 +22,7 @@ const NewsAndBlogs = ({ blogs }) => {
             reverseDirection: false,
           }}
           spaceBetween={30}
-          loop={true}
+          loop={blogs.length > 3}
           breakpoints={{
             320: {
               slidesPerView: 1,

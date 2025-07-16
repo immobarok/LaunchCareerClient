@@ -26,8 +26,8 @@ const Promotions = () => {
         </h1>
         <p className="mt-4 sm:mt-6">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide. The right job is out there.</p>
         <div className="flex gap-4 mt-6">
-          <button className="btn my-button flex items-center">Search Job <Search size={20} strokeWidth={1.25} /> </button>
-          <button className="btn btn-outline border-lime-400 hover:bg-lime-100 transition-colors duration-300 flex items-center">Learn More <ChevronRight size={20} strokeWidth={1.25} /> </button>
+          <button className="btn my-button btn-lg flex items-center">Search Job <Search size={20} strokeWidth={1.25} /> </button>
+          <button className="btn btn-outline btn-lg border-lime-400 hover:bg-lime-100 transition-colors duration-300 flex items-center">Learn More <ChevronRight size={20} strokeWidth={1.25} /> </button>
         </div>
       </section>
       <div style={{ height: '60vh' }}></div>
