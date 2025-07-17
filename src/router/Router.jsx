@@ -9,6 +9,7 @@ import AddJob from "../pages/AddJob/AddJob";
 import MyPostedJob from "../pages/MyPostedJob/MyPostedJob";
 import ViewApplication from "../pages/ViewApplication/ViewApplication";
 import Jobs from "../pages/Jobs/Jobs";
+import Blogs from "../pages/Blogs/Blogs";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,8 @@ export const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
       },
       {
-        path: 'blog',
+        path: 'blogs',
+        Component: Blogs
       }
     ]
   }

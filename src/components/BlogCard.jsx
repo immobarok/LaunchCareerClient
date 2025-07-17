@@ -2,11 +2,11 @@ import { Timer } from 'lucide-react';
 import { Link } from 'react-router';
 
 const BlogCard = ({ blog }) => {
-  const { logo, coverImage, title, tags, readTime, content, author, publisdedDate } = blog;
+  const { logo, coverImage, title, tags, readTime, content, author, publisdedDate,_id } = blog;
   const slicedContent = content.slice(0, 100) + "...";
 
   return (
-    <Link to={'blogDetails/:id'}
+    <Link to={'/'}
       data-aos="fade-up"
       className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
     >

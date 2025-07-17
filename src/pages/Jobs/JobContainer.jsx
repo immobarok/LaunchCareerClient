@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import HotJobsCard from './../Home/HotJobsCard';
 import Loader from '../../components/Loader';
+import useJobFilter from '../../hooks/UseJobFilter';
+import JobsNotFound from '../../components/JobsNotFound';
 
-const JobContainer = ({ jobs, loading }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const jobPerPage = 9;
-  const totalPages = Math.ceil(jobs.length / jobPerPage);
-  const startIndex = (currentPage - 1) * jobPerPage;
-  const currentJob = jobs.slice(startIndex, startIndex + jobPerPage);
+const JobContainer = ({ jobs, loading, filteredJobs }) => {
+  const { setCurrentPage, currentPage, startIndex, jobsPerPage } = useJobFilter();
+
+  const totalPages = Math.ceil(jobs.length / jobsPerPage);
+  const currentJob = jobs.slice(startIndex, startIndex + jobsPerPage);
 
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -23,6 +24,12 @@ const JobContainer = ({ jobs, loading }) => {
 
   return (
     <>
+      {
+        filteredJobs.length === 0 &&
+        <div className="flex justify-center items-center">
+          <JobsNotFound />
+        </div>
+      }
       <div className='grid grid-cols-3 gap-6 w-full'>
         {
           currentJob.map((job) => (

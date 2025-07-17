@@ -48,9 +48,13 @@ import mobileMoc from './mobile_mock.png'
 import bg_moc from './bg-grad.png'
 import appleWhite from './icons8-apple-100.png'
 import playStore from './playstore.png'
+import magicPattern from './magic_pattern.png'
+import blogHero from './bloghero.jpg'
 
 
 export const assets = {
+  blogHero,
+  magicPattern,
   playStore,
   bg_moc,
   mobileMoc,

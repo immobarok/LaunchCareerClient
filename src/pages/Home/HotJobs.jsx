@@ -3,6 +3,7 @@ import HotJobsCard from './HotJobsCard';
 import { ChevronRight } from 'lucide-react';
 import useAuth from '../../hooks/UseAuth';
 import Loader from '../../components/Loader';
+import {Link} from 'react-router'
 
 const HotJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -37,9 +38,11 @@ const HotJobs = () => {
         }
       </div>
 
-      <button className='flex gap-3 btn btn-lg my-button mt-10 mx-auto'>
-        Show All Jobs <ChevronRight />
-      </button>
+      <Link to={'/jobs'}>  
+        <button className='flex gap-3 btn btn-lg my-button mt-10 mx-auto'>
+          Show All Jobs <ChevronRight />
+        </button>
+        </Link>
     </div>
   );
 };

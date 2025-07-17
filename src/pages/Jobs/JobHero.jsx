@@ -1,10 +1,18 @@
 import { Search, Filter, ArrowUpDown } from 'lucide-react';
 import { assets } from '../../assets/assets';
 import useJobFilter from './../../hooks/UseJobFilter';
+import { useState } from 'react';
 
-const JobHero = () => {
-  const { sortBy, setSortBy } = useJobFilter();
-  console.log("sortby", sortBy)
+const JobHero = ({ jobs }) => {
+  const { sortBy, setSortBy, setSearchJob } = useJobFilter();
+  const { jobsPerPage, startIndex } = useJobFilter();
+  const endIndex = startIndex + jobsPerPage;
+  const numberOfJobs = Math.min(endIndex, jobs.length);
+  const [searchText, setSearchText] = useState('');
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchJob(searchText)
+  }
   return (
     <div className='w-full sm:mt-32 '>
       {/* Hero Search Section */}
@@ -36,14 +44,15 @@ const JobHero = () => {
           <div className='relative max-w-2xl mx-auto mt-8 group'>
             <div className='absolute -inset-0.5 rounded-lg bg-gradient-to-r from-lime-400 via-emerald-400 to-lime-300 opacity-75 group-hover:opacity-100 transition-all duration-500 blur-sm group-hover:blur-md'></div>
 
-            <form className='relative bg-white/95 backdrop-blur-sm px-2 h-16 rounded-lg flex items-center overflow-hidden shadow-sm'>
+            <form onSubmit={handleSearch} className='relative bg-white/95 backdrop-blur-sm px-2 h-16 rounded-lg flex items-center overflow-hidden shadow-sm'>
               <input
+                onChange={(e) => setSearchText(e.target.value)}
                 type="text"
                 className='border-none outline-none w-full px-5 bg-transparent placeholder-gray-500 text-gray-700 font-medium'
                 placeholder='Job title, keywords, or company...'
               />
               <div className='pr-1'>
-                <button className='flex items-center gap-2 bg-gradient-to-r from-lime-500 to-emerald-600 px-6 py-3 rounded-md text-white font-semibold hover:shadow-lg transition-all duration-300 hover:from-lime-600 hover:to-emerald-700'>
+                <button type='submit' className='flex items-center gap-2 bg-gradient-to-r from-lime-500 to-emerald-600 px-6 py-3 rounded-md text-white font-semibold hover:shadow-lg transition-all duration-300 hover:from-lime-600 hover:to-emerald-700'>
                   <span>Search</span>
                   <Search className='h-4 w-4' />
                 </button>
@@ -61,7 +70,7 @@ const JobHero = () => {
         </div>
 
         <div className='text-gray-600 text-sm sm:text-base'>
-          Showing <span className='font-semibold text-lime-600'>10 of 400</span> Jobs
+          Showing <span className='font-semibold text-lime-600'>{numberOfJobs} of {jobs.length}</span> Jobs
         </div>
 
         <div className='flex items-center gap-2 text-gray-700 font-medium'>

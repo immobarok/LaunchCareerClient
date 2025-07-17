@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const JobList = ({ jobsCreatedByPromise }) => {
   const jobs = use(jobsCreatedByPromise);
-  console.log("jobs",jobs)
+  //console.log("jobs",jobs)
 
   return (
     <motion.div

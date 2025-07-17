@@ -9,15 +9,24 @@ import UseJobFilter from '../../hooks/UseJobFilter';
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { loading, setLoading } = useAuth();
-  const { sortBy } = UseJobFilter();
+  const { sortBy, searchJob } = UseJobFilter();
 
-  const sortedJobs = [...jobs];
+  const trimSearchText = searchJob.trim().toLowerCase()
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(trimSearchText) ||
+    job.description.toLowerCase().includes(trimSearchText) ||
+    job.company.toLowerCase().includes(trimSearchText)
+  );
+  const sortedJobs = [...filteredJobs];
 
   if (sortBy === 'Lowest Salary') {
     sortedJobs.sort((a, b) => a.salaryRange.max - b.salaryRange.max);
   } else if (sortBy === 'Highest Salary') {
     sortedJobs.sort((a, b) => b.salaryRange.max - a.salaryRange.max);
   }
+
+
+
   useEffect(() => {
     setLoading(true)
     axios.get('http://localhost:4000/jobs')
@@ -39,7 +48,7 @@ const Jobs = () => {
           <Filter jobs={jobs} />
         </div>
         <div className='col-span-9'>
-          <JobContainer loading={loading} jobs={sortedJobs} />
+          <JobContainer filteredJobs={filteredJobs} loading={loading} jobs={sortedJobs} />
         </div>
       </div>
     </div>

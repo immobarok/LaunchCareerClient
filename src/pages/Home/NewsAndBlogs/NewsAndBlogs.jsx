@@ -4,8 +4,10 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { Link } from 'react-router';
 import { ChevronRight } from "lucide-react";
+import Loader from "../../../components/Loader";
 
-const NewsAndBlogs = ({ blogs }) => {
+const NewsAndBlogs = ({ blogs, loading }) => {
+  if (loading) return <Loader />
   return (
     <section data-aos="fade-up" className="py-10 md:py-20 bg-lime-50 my-6">
       <div className="text-center max-w-xl mx-auto mb-12">
