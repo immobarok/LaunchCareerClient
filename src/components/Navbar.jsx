@@ -82,7 +82,7 @@ const Navbar = () => {
                 Read Blogs
               </NavLink>
               <NavLink
-                to={'/blogs/tech'}
+                to={'/blogs/postBlog'}
                 className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600 transition"
               >
                 Post a Blog

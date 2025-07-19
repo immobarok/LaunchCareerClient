@@ -5,6 +5,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import useAuth from '../../hooks/UseAuth';
 import UseJobFilter from '../../hooks/UseJobFilter';
+import NewsLetter from '../Home/NewsLetter/NewsLetter';
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -51,6 +52,7 @@ const Jobs = () => {
           <JobContainer filteredJobs={filteredJobs} loading={loading} jobs={sortedJobs} />
         </div>
       </div>
+      <NewsLetter />
     </div>
   )
 }

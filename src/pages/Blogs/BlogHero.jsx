@@ -1,9 +1,9 @@
-import { PenTool } from "lucide-react";
+import { ArrowUpDown, Filter, PenTool } from "lucide-react";
 import { assets } from "../../assets/assets";
 
-const BlogHero = () => {
+const BlogHero = ({blogs}) => {
   return (
-    <div className="w-full relative h-[500px] md:h-[400px] lg:h-[450px]">
+    <div className="w-full relative h-[500px] md:h-[400px] lg:h-[450px] mb-32">
       {/* Background Image */}
       <img
         src={assets.blogHero}
@@ -28,6 +28,15 @@ const BlogHero = () => {
               Explore blogs
             </button>
           </div>
+        </div>
+      </div>
+      <div className='max-w-7xl mx-auto my-10 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-center gap-4'>
+        <div className='text-gray-600 text-lg font-bold sm:text-base'>
+          <span>Blogs</span>
+        </div>
+        <div className='flex items-center gap-2 text-gray-700 font-medium'>
+          <ArrowUpDown className='h-5 w-5 text-lime-600' />
+          <span>Result {blogs.length} </span>
         </div>
       </div>
     </div>

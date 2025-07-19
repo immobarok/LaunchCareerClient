@@ -4,6 +4,7 @@ import useAuth from "../../hooks/UseAuth";
 import BlogContainer from "./BlogContainer";
 import BlogHero from "./BlogHero";
 import Loader from "../../components/Loader";
+import NewsLetter from './../Home/NewsLetter/NewsLetter';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -25,8 +26,9 @@ const Blogs = () => {
   if (loading) return <Loader />
   return (
     <div>
-      <BlogHero />
+      <BlogHero blogs={blogs} />
       <BlogContainer blogs={blogs} />
+      <NewsLetter />
     </div>
   )
 }
