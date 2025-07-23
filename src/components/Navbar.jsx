@@ -38,7 +38,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to={'/myApplications'} className="hover:text-lime-500 transition">
-          MyApplications
+          Dashboard
         </NavLink>
       </li>
       <li>

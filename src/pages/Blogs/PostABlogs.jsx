@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import axios from "../../utils/axiosInatance";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import useAxiosSecure from "../../utils/axiosSecure";
 
 const PostABlog = () => {
   const {
@@ -17,6 +17,8 @@ const PostABlog = () => {
   const [selectedCoverImage, setSelectedCoverImage] = useState(null);
   const [logoPreview, setLogoPreview] = useState(null);
   const [coverImagePreview, setCoverImagePreview] = useState(null);
+
+  const axiosSecure = useAxiosSecure();
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
@@ -63,6 +65,7 @@ const PostABlog = () => {
   };
 
   const onSubmit = async (data) => {
+    //console.log("form data", data)
     setUploading(true);
     try {
       data.tags = data.tags.split(",").map((tag) => tag.trim());
@@ -82,8 +85,7 @@ const PostABlog = () => {
       if (selectedCoverImage) {
         formData.append('coverImage', selectedCoverImage);
       }
-      
-      await axios.post("/blogs", formData, {
+      await axiosSecure.post("/blogs", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
