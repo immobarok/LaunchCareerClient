@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ApplicationStats from './ApplicationStats';
 import ApplicationList from './ApplicationList';
 import useAuth from '../../hooks/UseAuth';
-import { myApplicationsPromise } from '../../api/ApplicationsApi';
+import { myApplicationsPromise } from '../../api/applicationsApi';
 
 const MyApplications = () => {
 
@@ -11,7 +11,7 @@ const MyApplications = () => {
 
   return (
     <div className='my-20 max-w-6xl mx-auto'>
-      <ApplicationStats></ApplicationStats>
+      <ApplicationStats myApplicationsPromise={myApplicationsPromise(user.email, user.accessToken)} ></ApplicationStats>
       <Suspense fallback={'loading your applications'}>
         <ApplicationList
           myApplicationsPromise={myApplicationsPromise(user.email, user.accessToken)}

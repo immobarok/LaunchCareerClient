@@ -10,14 +10,31 @@ import NewsLetter from '../Home/NewsLetter/NewsLetter';
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { loading, setLoading } = useAuth();
-  const { sortBy, searchJob } = UseJobFilter();
+  const { sortBy, searchJob,filters } = UseJobFilter();
 
   const trimSearchText = searchJob.trim().toLowerCase()
-  const filteredJobs = jobs.filter((job) =>
-    job.title.toLowerCase().includes(trimSearchText) ||
-    job.description.toLowerCase().includes(trimSearchText) ||
-    job.company.toLowerCase().includes(trimSearchText)
-  );
+  const filteredJobs = jobs.filter((job) => {
+    const titleMatch = job.title.toLowerCase().includes(trimSearchText);
+    const descMatch = job.description.toLowerCase().includes(trimSearchText);
+    const companyMatch = job.company.toLowerCase().includes(trimSearchText);
+
+    const locationMatch = !filters.location || job.location === filters.location;
+    const experienceMatch = !filters.experience || job.experience === filters.experience;
+    const salaryMatch = job.salaryRange.max <= filters.salaryRange[1];
+
+    const jobTypeMatch =
+      filters.jobType.length === 0 ||
+      filters.jobType.some(type => job.jobType.includes(type));
+
+    return (
+      (titleMatch || descMatch || companyMatch) &&
+      locationMatch &&
+      experienceMatch &&
+      salaryMatch &&
+      jobTypeMatch
+    );
+  });
+
   const sortedJobs = [...filteredJobs];
 
   if (sortBy === 'Lowest Salary') {
@@ -25,6 +42,7 @@ const Jobs = () => {
   } else if (sortBy === 'Highest Salary') {
     sortedJobs.sort((a, b) => b.salaryRange.max - a.salaryRange.max);
   }
+
 
 
 
@@ -46,7 +64,7 @@ const Jobs = () => {
       <JobHero jobs={jobs} />
       <div className='grid grid-cols-12 gap-6 my-10'>
         <div className='col-span-3'>
-          <Filter jobs={jobs} />
+          <Filter />
         </div>
         <div className='col-span-9'>
           <JobContainer filteredJobs={filteredJobs} loading={loading} jobs={sortedJobs} />

@@ -28,7 +28,6 @@ const JobApplicationRow = ({ application, index }) => {
         <br />
         <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
       </td>
-      <td>Purple</td>
       <th>
         <button className="btn btn-ghost btn-xs">details</button>
       </th>

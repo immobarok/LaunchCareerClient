@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const MainLayout = () => {
   const { showLogin } = useAuth();
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-hidden">
       {/* Navbar always on top */}
       <Navbar />
       <Toaster position="top-right" />

@@ -168,44 +168,44 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle Button */}
-        {user ? (
-          <div className="flex gap-2 items-center sm:hidden">
-            <p className="text-gray-600 text-sm font-medium">
-              <span className="text-lime-500">Hi</span>, {user?.displayName?.split(' ')[0]}!
-            </p>
-            <img
-              className="w-8 h-8 border rounded-full border-lime-300 cursor-pointer"
-              src={user.photoURL ? user.photoURL : assets?.avatar}
-              alt="User Avatar"
-            />
-          </div>
-        ) : (
+        <div className="flex flex-row-reverse items-center gap-3 sm:hidden">
           <button
             onClick={handleToogler}
             aria-label="menu-btn"
             type="button"
-            className="menu-btn inline-block md:hidden active:scale-90 transition ml-4"
+            className="menu-btn active:scale-90 transition duration-300"
           >
-            {show ? (
-              <X />
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={30}
-                height={30}
-                viewBox="0 0 30 30"
-                fill="#000"
-              >
-                <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
+            {show ? <X /> : (
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 30 30" fill="#000">
+                <path d="M3 7a1 1 0 103 2h21a1 1 0 100-2H3zm0 7a1 1 0 103 2h21a1 1 0 100-2H3zm0 7a1 1 0 103 2h21a1 1 0 100-2H3z" />
               </svg>
             )}
           </button>
-        )}
+
+          {/* User Info - Only if logged in */}
+          {user && (
+            <div className="flex items-center gap-2">
+              <p className="text-gray-600 text-sm font-medium">
+                <span className="text-lime-500">Hi</span>, {user?.displayName?.split(' ')[0]}!
+              </p>
+              <img
+                className="w-8 h-8 border rounded-full border-lime-300 cursor-pointer"
+                src={user.photoURL || assets?.avatar}
+                alt="User Avatar"
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 ${show ? 'block' : 'hidden'} md:hidden`}>
+      <div
+        className={`mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 overflow-hidden transform transition-all duration-300 ease-in-out md:hidden
+    ${show ? 'max-h-[500px] opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-2'}
+  `}
+      >
         <ul className="flex flex-col space-y-4 text-lg">{navlinks}</ul>
+
         {user ? (
           <button onClick={signOutUser} type="button" className="btn my-button mt-3">
             Logout
@@ -216,6 +216,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
+
     </nav>
   );
 };
