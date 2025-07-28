@@ -2,7 +2,7 @@ import useAuth from "../hooks/UseAuth";
 import axios from 'axios';
 import { useNavigate } from "react-router";
 const axiosSecure = axios.create({
-  baseURL: 'https://job-pilot-server-pf92.vercel.app/',
+  baseURL: 'https://job-pilot-server-pf92.vercel.app',
 })
 const useAxiosSecure = () => {
   const { user, logOut } = useAuth();
