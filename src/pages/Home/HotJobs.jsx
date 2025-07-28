@@ -11,7 +11,7 @@ const HotJobs = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:4000/jobs')
+    fetch('https://job-pilot-server-pf92.vercel.app/jobs')
       .then(res => res.json())
       .then(data => {
         setJobs(data);

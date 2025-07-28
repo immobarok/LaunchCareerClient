@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInatance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'https://job-pilot-server-pf92.vercel.app',
   withCredentials: true
 })
 

@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
       {
         path: '/viewApplication/:job_id',
         element: <PrivateRoutes> <ViewApplication /> </PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:4000/applications/job/${params.job_id}`)
+        loader: ({ params }) => fetch(`https://job-pilot-server-pf92.vercel.app/applications/job/${params.job_id}`)
       },
       {
         path: '/myPostedJob',
@@ -51,12 +51,12 @@ export const router = createBrowserRouter([
       {
         path: 'jobs/:id',
         Component: JobDetails,
-        loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
+        loader: ({ params }) => fetch(`https://job-pilot-server-pf92.vercel.app/jobs/${params.id}`)
       },
       {
         path: 'jobs/jobs/:id',
         Component: JobDetails,
-        loader: ({ params }) => fetch(`http://localhost:4000/jobs/${params.id}`)
+        loader: ({ params }) => fetch(`https://job-pilot-server-pf92.vercel.app/jobs/${params.id}`)
       },
       {
         path: 'blogs',
