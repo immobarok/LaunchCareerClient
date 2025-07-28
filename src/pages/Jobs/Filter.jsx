@@ -24,7 +24,7 @@ const Filter = () => {
       {/* Job Type */}
       <div>
         <h2 className="font-semibold text-lg mb-2">Job Type</h2>
-        {['Full-Time', 'Part-Time', 'Remote', 'Internship'].map(type => (
+        {['OnSite', 'Hybrid', 'Remote', 'Internship'].map(type => (
           <label key={type} className="flex items-center space-x-2 mb-1">
             <input
               type="checkbox"
@@ -62,7 +62,7 @@ const Filter = () => {
           type="range"
           min="0"
           max="200000"
-          step="100"
+          step="50"
           value={filters.salaryRange[1]}
           onChange={(e) =>
             updateFilter('salaryRange', [0, parseInt(e.target.value)])

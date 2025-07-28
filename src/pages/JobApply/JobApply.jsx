@@ -30,7 +30,7 @@ const JobApply = () => {
       something
     }
 
-    axios.post('http://localhost:4000/job-applications', applicationData)
+    axios.post('https://job-pilot-server-pf92.vercel.app/job-applications', applicationData)
       .then(res => {
         if (res.data.insertedId) {
           toast.success("Your application has been submitted")

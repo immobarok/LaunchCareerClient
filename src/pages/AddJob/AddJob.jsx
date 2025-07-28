@@ -61,7 +61,7 @@ const AddJob = () => {
       }
 
       // Send
-      const response = await axios.post("http://localhost:4000/add-job", formData, {
+      const response = await axios.post("https://job-pilot-server-pf92.vercel.app/add-job", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

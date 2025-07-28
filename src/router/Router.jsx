@@ -12,6 +12,7 @@ import Jobs from "../pages/Jobs/Jobs";
 import Blogs from "../pages/Blogs/Blogs";
 import PostAJobs from "../pages/Blogs/PostABlogs";
 import PostABlog from "../pages/Blogs/PostABlogs";
+import NotFound from "../pages/404/404";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,9 @@ export const router = createBrowserRouter([
       {
         path: 'blogs/postBlog',
         element: <PrivateRoutes><PostABlog /></PrivateRoutes>
+      },{
+        path: '*',
+        Component: NotFound,
       }
     ]
   }

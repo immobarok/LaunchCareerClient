@@ -48,7 +48,7 @@ const Jobs = () => {
 
   useEffect(() => {
     setLoading(true)
-    axios.get('http://localhost:4000/jobs')
+    axios.get('https://job-pilot-server-pf92.vercel.app/jobs')
       .then(res => {
         setLoading(false);
         setJobs(res.data);
@@ -60,8 +60,8 @@ const Jobs = () => {
   }, [])
 
   return (
-    <div className='max-w-7xl mx-auto'>
-      <JobHero jobs={jobs} />
+    <div className='max-w-7xl mx-auto mt-20'>
+      <JobHero jobs={jobs} filteredJobs={filteredJobs} />
       <div className='grid grid-cols-12 gap-6 my-10'>
         <div className='col-span-3'>
           <Filter />

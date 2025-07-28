@@ -12,7 +12,7 @@ const MyApplications = () => {
   return (
     <div className='my-20 max-w-6xl mx-auto'>
       <ApplicationStats myApplicationsPromise={myApplicationsPromise(user.email, user.accessToken)} ></ApplicationStats>
-      <Suspense fallback={'loading your applications'}>
+      <Suspense fallback={'Loading...'}>
         <ApplicationList
           myApplicationsPromise={myApplicationsPromise(user.email, user.accessToken)}
         ></ApplicationList>

@@ -10,7 +10,7 @@ const ViewApplication = () => {
   const handleChangeStatus = (e, app_id) => {
     const newStatus = e.target.value;
 
-    axios.patch(`http://localhost:4000/applications/${app_id}`, { status: newStatus })
+    axios.patch(`https://job-pilot-server-pf92.vercel.app/applications/${app_id}`, { status: newStatus })
       .then((res) => {
         console.log("PATCH result:", res.data);
         const { matchedCount, modifiedCount } = res.data;
